@@ -1,0 +1,362 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Space Mono", monospace;
+}
+
+body {
+  width: 100%;
+}
+
+body input::-webkit-outer-spin-button,
+body input::-webkit-inner-spin-button {
+  display: none;
+  margin: 0;
+}
+
+body input[type="number"] {
+  margin-top: 0.2em;
+  margin-bottom: 1.6em;
+  padding: 0 1rem;
+  display: block;
+  background-color: #f4fafa;
+  background-repeat: no-repeat;
+  background-position: left;
+  background-position-x: 17px;
+  color: #00494d;
+  border: none;
+  width: 100%;
+  font-weight: bold;
+  font-size: 24px;
+  text-align: right;
+  height: 50px;
+}
+
+body input[type="number"].custom {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+body input[type="number"].empty {
+  color: #7f9c9f;
+}
+
+body input[type="number"]:focus-visible {
+  border: 3px solid #26c0ab;
+  border-radius: 6px;
+  outline: none;
+}
+
+body main {
+  background-color: #c5e4e7;
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body main article {
+  width: 100%;
+  height: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body main article .title {
+  height: 145px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body main article .title h1 {
+  color: #00494d;
+  height: 68px;
+  padding-left: 8px;
+  width: 7rem;
+  letter-spacing: 0.4em;
+  word-break: break-all;
+  font-size: 24px;
+  font-weight: bold;
+  font-style: normal;
+  text-align: center;
+}
+
+body main article .container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: white;
+  border-radius: 1.5rem 1.5rem 0 0;
+}
+
+body main article .container label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: bold;
+  color: #7f9c9f;
+}
+
+body main article .container label.have_error_msg {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+body main article .container label .error_msg {
+  color: #b91414;
+  display: none;
+}
+
+body main article .container .form-container {
+  margin: 2em;
+  margin-bottom: 0;
+}
+
+body main article .container .form-container .input_bill {
+  background-image: url(/images/icon-dollar.svg);
+}
+
+body main article .container .form-container .input_people {
+  background-image: url(/images/icon-person.svg);
+}
+
+body main article .container .form-container .btn-container {
+  margin-top: 1em;
+  margin-bottom: 2em;
+  gap: 1rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(146px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(146px, 1fr));
+}
+
+body main article .container .form-container .btn-container button {
+  border: none;
+  background-color: #00494d;
+  color: #f4fafa;
+  height: 48px;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+body main article .container .form-container .btn-container button.selected, body main article .container .form-container .btn-container button:hover {
+  background-color: #26c0ab;
+  color: #00494d;
+  cursor: pointer;
+}
+
+body main article .container .result {
+  margin: 0 1.5em;
+  padding: 2rem 1.5rem;
+  padding-bottom: 1.5rem;
+  background-color: #00494d;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+body main article .container .result .amount {
+  margin-bottom: 1.2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+body main article .container .result .amount label {
+  display: block;
+  font-weight: 900;
+  color: white;
+}
+
+body main article .container .result .amount label span {
+  display: block;
+  font-size: 13px;
+  color: #7f9c9f;
+}
+
+body main article .container .result .amount p {
+  font-size: 34px;
+  font-weight: bold;
+  text-align: right;
+  letter-spacing: -0.05em;
+  color: #26c0ab;
+}
+
+body main article .container .result .total {
+  margin-bottom: 1.2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+body main article .container .result .total label {
+  display: block;
+  color: white;
+}
+
+body main article .container .result .total label span {
+  display: block;
+  font-size: 13px;
+  color: #7f9c9f;
+}
+
+body main article .container .result .total p {
+  font-size: 34px;
+  font-weight: bold;
+  text-align: right;
+  letter-spacing: -0.05em;
+  color: #26c0ab;
+}
+
+body main article .container .result .reset {
+  margin-top: 2rem;
+}
+
+body main article .container .result .reset button {
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+  border-radius: 5px;
+  border: 1px solid;
+}
+
+body main article .container .result .reset button.empty {
+  background-color: #006166;
+  color: #00494d;
+}
+
+body main article .container .result .reset button:hover {
+  cursor: pointer;
+  background-color: #26c0ab;
+  color: #00494d;
+}
+
+@media screen and (min-width: 376px) {
+  body {
+    width: 1440px;
+    height: 1024px;
+  }
+  body input[type="number"] {
+    margin-bottom: 1.6em;
+  }
+  body main {
+    width: 100%;
+    height: 100%;
+  }
+  body main article {
+    width: 920px;
+    height: 80%;
+  }
+  body main article .title {
+    height: auto;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    margin-top: 50px;
+    margin-bottom: 85px;
+  }
+  body main article .title h1 {
+    margin: 0;
+  }
+  body main article .container {
+    border-radius: 1.5rem;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  body main article .container .form-container {
+    width: 50%;
+    padding: 0.8rem 1rem 0.5rem 1rem;
+  }
+  body main article .container .form-container .btn-container {
+    -ms-grid-columns: (117px)[3];
+        grid-template-columns: repeat(3, 117px);
+    -webkit-column-gap: 0.9rem;
+            column-gap: 0.9rem;
+    margin-bottom: 2.4em;
+  }
+  body main article .container .form-container .btn-container .btn-custom {
+    padding-left: 0;
+  }
+  body main article .container .result {
+    margin: 2em;
+    margin-left: 0;
+    padding: 3rem 2.5rem;
+    padding-bottom: 0;
+    width: 50%;
+  }
+  body main article .container .result .amount {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    height: 3.5em;
+    margin-bottom: 2.5em;
+  }
+  body main article .container .result .amount p {
+    font-size: 48px;
+    letter-spacing: -0.025em;
+  }
+  body main article .container .result .total {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    height: 3.5em;
+    margin-bottom: 2.5em;
+  }
+  body main article .container .result .total p {
+    font-size: 48px;
+    letter-spacing: -0.025em;
+  }
+  body main article .container .result .reset {
+    margin-top: 8em;
+  }
+}
+/*# sourceMappingURL=style.css.map */

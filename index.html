@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="/src/css/style.css" />
+
+    <title>Frontend Mentor | Tip calculator app</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+        margin: 1rem 1.5rem;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <article>
+        <div class="title">
+          <h1>SPLITTER</h1>
+        </div>
+        <div class="container">
+          <section class="form-container">
+            <label for="bill" class="have_error_msg">Bill </label>
+            <input
+              name="bill"
+              class="empty input_bill"
+              type="number"
+              placeholder="0"
+              onfocus="this.placeholder = ''"
+              onblur="this.placeholder = '0'"
+            />
+            <label>Select Tip % </label>
+            <div class="btn-container">
+              <button class="btn-sm" value="5">5%</button>
+              <button class="btn-sm" value="10">10%</button>
+              <button class="btn-sm" value="15">15%</button>
+              <button class="btn-sm" value="25">25%</button>
+              <button class="btn-sm" value="50">50%</button>
+              <!-- <button class="btn-sm btn-custom">Custom</button> -->
+              <input
+                type="number"
+                class="custom"
+                placeholder="Custom"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Custom'"
+              />
+            </div>
+            <label class="have_error_msg">
+              Number of People
+              <span class="error_msg">Can't be zero</span>
+            </label>
+            <input
+              name="people"
+              type="number"
+              class="empty input_people"
+              placeholder="0"
+              onfocus="this.placeholder = ''"
+              onblur="this.placeholder = '0'"
+            />
+          </section>
+          <section class="result">
+            <div class="amount">
+              <label>
+                Tip Amount
+                <span> / person </span>
+              </label>
+              <p class="amount_number">$0.00</p>
+            </div>
+            <div class="total">
+              <label>
+                Total
+                <span> / person </span>
+              </label>
+              <p class="total_number">$0.00</p>
+            </div>
+            <div class="reset">
+              <button name="reset" class="empty btn-lg">RESET</button>
+            </div>
+          </section>
+        </div>
+      </article>
+    </main>
+
+    <footer class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Your Name Here</a>.
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      const count_total = (bill, tip, people) => {
+        return (bill + (bill * tip) / 100) / people;
+      };
+
+      const count_tip = (bill, tip, people) => {
+        return (bill * tip) / 100 / people;
+      };
+
+      $("button").prop("disabled", true);
+
+      $("input[name=bill]").on("input", function () {
+        if ($(this).val !== "") {
+          $("button").prop("disabled", false);
+        }
+      });
+
+      $("button").click(function () {
+        const bill = $("input[name=bill]").val();
+        const btn_val = $(this).val();
+        const people = $("input[name=people]");
+
+        $(".selected").toggleClass("selected");
+        $(this).toggleClass("selected");
+        if (people.val() === "" && bill !== "") {
+          people.val(1);
+        }
+        $(".amount_number").text(function () {
+          const result = count_tip(
+            Number(bill),
+            Number(btn_val),
+            Number(people.val())
+          );
+
+          // console.log(result.length);
+
+          return "$" + result.toFixed(2);
+        });
+
+        $(".total_number").text(function () {
+          return (
+            "$" +
+            count_total(
+              Number(bill),
+              Number(btn_val),
+              Number(people.val())
+            ).toFixed(2)
+          );
+        });
+      });
+
+      $(".custom").focus(function () {
+        $(".selected").removeClass("selected");
+        // console.log(btn);
+      });
+
+      $("input[name=people]").on("input", function () {
+        const val = $(this).val();
+        const bill = $("input[name=bill]").val();
+        let amount = Number($(".amount_number").text().split("$")[1]);
+
+        if (val === "0" || val === "" || Number(val) < 0) {
+          $(".error_msg").css("display", "block");
+          $(this).css("border-color", "rgb(185, 20, 20)");
+        } else {
+          $(".error_msg").css("display", "none");
+          $(this).css("border-color", "hsl(172, 67%, 45%)");
+          $(".amount_number").text(function () {
+            const selected = $(".selected").val();
+            const result = count_tip(
+              Number(bill),
+              Number(selected),
+              Number(val)
+            );
+
+            return "$" + result.toFixed(2);
+          });
+          $(".total_number").text(function () {
+            const bill = Number($("input[name=bill]").val());
+            const tip = Number($(".selected").val());
+
+            return "$" + count_total(bill, tip, val).toFixed(2);
+          });
+        }
+      });
+
+      $("input[type=number]").on("input", function () {
+        const val = $(this).val();
+
+        if (val !== "") {
+          $(this).val(Math.max(Math.min(val, 100), 0));
+        }
+      });
+
+      $("button[name=reset]").click(function () {
+        $("input").val(function () {
+          return "";
+        });
+        $(".total_number").text(function () {
+          return "$" + "0.00";
+        });
+      });
+    </script>
+  </body>
+</html>
